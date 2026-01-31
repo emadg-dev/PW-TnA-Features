@@ -75,3 +75,32 @@ Scenario: Update employee snapshot
   And snapshot year and month are set
   When the user clicks on save
   Then the snapshot should be updated successfully
+
+
+Scenario: Edit employee with valid data
+  Given the user is on the employee edit form
+  And employee data is already loaded
+  When the user updates some fields with valid values
+  And clicks on save
+  Then the employee data should be updated successfully
+  And a success message should be shown
+
+
+Scenario: Delete employee successfully
+  Given the delete confirmation modal is open
+  When the user confirms the deletion
+  Then the employee should be removed from the list
+  And a success message should be shown
+
+Scenario Outline: Prevent saving a employee with invalid data
+  Given I am on the <mode> employee page
+  And I have admin role
+  When I fill in the employee form with invalid data
+  And I click the save button
+  Then the employee should not be saved
+  And I should see validation error messages
+
+Examples:
+  | mode   |
+  | create |
+  | edit   |
