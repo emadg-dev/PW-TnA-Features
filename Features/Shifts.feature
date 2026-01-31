@@ -24,8 +24,8 @@ Scenario: Delete a shift
 Scenario: Edit a shift
   Given a shift exists
   When I click the edit button
-  Then the shift information should be displayed
-  When I change the shift fields
+  And the shift information should be displayed
+  And I change the shift value fields
   And I click the save button
   Then I should see a notification that the shift is edited
 
