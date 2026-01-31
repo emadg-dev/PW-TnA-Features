@@ -44,6 +44,18 @@ Scenario: Search for a shift
   And I click the search button
   Then the matching shift should be displayed
 
+Scenario Outline: Prevent saving a shift with invalid data
+  Given I am on the <mode> shift page
+  And I have admin role
+  When I fill in the shift form with invalid data
+  And I click the save button
+  Then the shift should not be saved
+  And I should see validation error messages
+
+Examples:
+  | mode   |
+  | create |
+  | edit   |
 
 
 @BreakIntervals
@@ -52,10 +64,10 @@ Feature: BreakIntervals Management
 Scenario: Apply break intervals only to defined shift days
   Given I am on the shift page
   And a shift is defined with the following days:
-    | dayType              | startTime | endTime |
-    | regular              | 08:00     | 16:00   |
-    | thursday regular     | 08:00     | 14:00   |
-    | ramadan              | 09:00     | 15:00   |
+    | dayType               | startTime | endTime |
+    | regular               | 08:00     | 16:00   |
+    | thursday regular      | 08:00     | 14:00   |
+    | ramadan               | 09:00     | 15:00   |
   And thursday ramadan is not defined for the shift
 
   When I define a break interval from 12:00 to 13:00

@@ -43,6 +43,20 @@ Scenario: Search for a group
   And I click the search button
   Then the matching group should be displayed
 
+Scenario Outline: Prevent saving a group with invalid data
+  Given I am on the <mode> group page
+  And I have admin role
+  When I fill in the group form with invalid data
+  And I click the save button
+  Then the group should not be saved
+  And I should see validation error messages
+
+Examples:
+  | mode   |
+  | create |
+  | edit   |
+
+
 
 @groupCycles
 Feature: Group Cycle Management
