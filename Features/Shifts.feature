@@ -1,55 +1,46 @@
 @first
-Feature: shift
+Feature: Shift Management
 
-Scenario: adding shift by admin
-Given in the shift page
-And role is admin
-When i click button create
-Then i see the field to input
+Scenario: Admin adds a new shift
+  Given I am on the shift page
+  And I have admin role
+  When I click the create shift button
+  Then I should see the shift input fields
 
-Scenario: refuse the duplicate the shift
-Given if the shifts is exist
-When fill the inputs
-And click the create button
-Then reject the created shifts
-And show notify that is duplicated
+Scenario: Prevent creating a duplicate shift
+  Given a shift already exists
+  When I fill in the shift inputs with duplicate data
+  And I click the create button
+  Then the shift should not be created
+  And I should see a notification that the shift is duplicated
 
+Scenario: Delete a shift
+  Given a shift exists
+  When I click the delete button
+  Then the shift should be removed
+  And I should see a delete notification
+  And the shift list should be updated
 
-Scenario: delete shift
-Given the shift is exit
-When i click the delete button
-Then the shift remove 
-And notify the delete 
-And update the list shift
+Scenario: Edit a shift
+  Given a shift exists
+  When I click the edit button
+  Then the shift information should be displayed
+  When I change the shift fields
+  And I click the save button
+  Then I should see a notification that the shift is edited
 
+Scenario: Search for a shift
+  Given a list of shifts exists
+  When I search for an existing shift
+  And I click the search button
+  Then the matching shift should be displayed
 
-Scenario:Edit shift
-Given if the shift exsit
-When i click Edit
-Then the information is show
-And i change the field
-And click save 
-And show the message that is edited
+Scenario: Create a one-day shift
+  Given I am on the shift page
+  When I create a shift for one day
+  Then the one-day shift should be saved successfully
 
-
-
-Scenario: Search the shift
-Given the list of shift
-When i search the exist shift
-And click the search
-Then show the found shift
-
-
-Scenario: Shift one day
-Given 
-When
-Then
-
-
-
-Scenario: Shift two day
-Given
-When
-Then
-
-
+Scenario: Create a two-day shift
+  Given I am on the shift page
+  When I create a shift for two days
+  Then the two-day shift should be saved successfully
