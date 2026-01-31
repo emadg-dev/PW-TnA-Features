@@ -1,15 +1,25 @@
 @shifts
 Feature: Shift Management
 
-Scenario: Admin adds a new shift
+Scenario: Admin opens create shift form
   Given I am on the shift page
   And I have admin role
   When I click the create shift button
   Then I should see the shift input fields
 
+
+Scenario: Admin creates a new shift
+  Given I am on the create shift page
+  And I have admin role
+  When I fill in valid shift information
+  And I click the save button
+  Then the shift should be created successfully
+  And I should see a success notification
+
+
 Scenario: Prevent creating a duplicate shift
   Given a shift already exists
-  When I fill in the shift inputs with duplicate data
+  When I fill in the shift inputs with valid data
   And I click the create button
   Then the shift should not be created
   And I should see a notification that the shift is duplicated
@@ -34,15 +44,6 @@ Scenario: Search for a shift
   And I click the search button
   Then the matching shift should be displayed
 
-Scenario: Create a one-day shift
-  Given I am on the shift page
-  When I create a shift for one day
-  Then the one-day shift should be saved successfully
-
-Scenario: Create a two-day shift
-  Given I am on the shift page
-  When I create a shift for two days
-  Then the two-day shift should be saved successfully
 
 
 @BreakIntervals

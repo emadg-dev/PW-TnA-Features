@@ -1,11 +1,20 @@
 @groups
 Feature: Group Management
 
-Scenario: Admin adds a new group
-  Given I am on the group page
+Scenario: Admin opens group form
+  Given I am on the  group page
   And I have admin role
   When I click the create group button
   Then I should see the group input fields
+
+  Scenario: Admin creates a new group
+  Given I am on the create group page
+  And I have admin role
+  When I fill in valid group information
+  And I click the save button
+  Then the group should be created successfully
+  And I should see a success notification
+
 
 Scenario: Prevent creating a duplicate group
   Given a group already exists
