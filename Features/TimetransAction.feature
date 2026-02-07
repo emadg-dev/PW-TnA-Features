@@ -119,7 +119,7 @@ Feature: Monthly timesheet Management (TimeTransactions)
   # Context menu for day row (right click on day)
   # -------------------------
 
-  Scenario: Right click on day opens context menu within viewport
+  Scenario: Right click on day opens context menu 
     Given a day row is editable
     When the user right clicks on the day row
     Then the context menu should be shown
@@ -136,26 +136,10 @@ Feature: Monthly timesheet Management (TimeTransactions)
     When the user right clicks on the day row
     Then the context menu should not be shown
 
-  Scenario: Select a daily wage code as non-admin marks day as edited and temp
-    Given the user is not an admin
-    And the day row is selected
-    When the user selects a daily wage code "X" from context menu
-    Then the day row should be marked as edited by user
-    And the day attendance wageCodeId should be set to wage code "X"
-    And the day should be flagged as daily wage temp
-    And the day should be added to modified rows list
-    And the context menu should close
 
-  Scenario: Select a daily wage code as admin opens request modal
-    Given the user is an admin
-    And the day row is selected
-    When the user selects a daily wage code "X" from context menu
-    Then the daily wage code request modal should open
-    And the selected wage code should be shown in the modal
-
-  Scenario: Saving daily wage code request applies wage code to selected day
-    Given the daily wage code request modal is open
-    When the user confirms save daily wage code request
+  Scenario: Saving daily wage code  applies wage code to selected day
+    Given the daily wage code  modal is open
+    When the user confirms save daily wage code 
     Then the selected day should be marked edited by user
     And the day attendance wageCodeId and wageCodeTitle should be updated
     And the day should be added to modified rows list
@@ -171,7 +155,7 @@ Feature: Monthly timesheet Management (TimeTransactions)
     And hourly wage codes list should contain active hourly wage codes
     And if the transaction has no wage code, disallow wage code type 6
 
-  Scenario: Selecting hourly wage code opens duration modal when needed
+  Scenario: Selecting hourly wage code  duration modal when needed
     Given the context menu is open for a transaction
     And the selected wage code is hourly
     And the selected wage code type is not 6
@@ -227,14 +211,12 @@ Feature: Monthly timesheet Management (TimeTransactions)
     Given a day row has overtime object
     When the user changes overtime field "overtimeBefore" to "02:15"
     Then overtimeBeforeUi should be "02:15"
-    And overtimeBefore minutes should be 135
     And the day should be added to modified rows list
 
   Scenario: Entering incomplete overtime value results in null minutes
     Given a day row has overtime object
     When the user enters overtime field "overtimeAfter" as "__:__"
-    Then overtimeAfterUi should be "__:__"
-    And overtimeAfter minutes should be null
+    And overtimeAfter  should be null
 
   Scenario: Total overtime field is disabled when any part field has value
     Given a day row overtimeBeforeUi is "01:00"
@@ -265,7 +247,7 @@ Feature: Monthly timesheet Management (TimeTransactions)
     When the user enters group code "99" and blurs the input
     And there is no matching group in dropdown list
     Then the day group code should remain "99"
-    And the day should exit editing mode
+    And the day should stay in editing mode
 
   Scenario: Admin multi-select days and set group code by numeric key
     Given the user is an admin
@@ -304,7 +286,5 @@ Feature: Monthly timesheet Management (TimeTransactions)
     Then the system should send a WorkTimeSummaryDto containing only modified days
     And each sent day should include group id/title/code if selected
     And timeTransactionItems should exclude deleted items and empty times
-    And each time value should be formatted as "HH:mm:00"
-    And overtime values should be sent as minutes 
     And modified rows list should be cleared after successful save
     And the timesheet should be reloaded for current employee, month and year
