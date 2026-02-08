@@ -5,8 +5,6 @@ Given the Daily Leave Or Mission modal component is initialized
 And wage codes are loaded
 And employee information is available
 
-
-
 Scenario: Open modal in edit mode
 Given a Daily Leave Or Mission record exists
 When the modal is opened with an id
