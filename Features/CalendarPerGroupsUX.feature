@@ -62,10 +62,15 @@ When the user selects a shift
 Then the selected day shiftId should be updated
 
 Scenario: Cycle holiday type using keyboard
-Given a day is selected
-When the user presses F6
-Then the holiday type should cycle
-And the shift should update accordingly
+  Given a day is selected
+  When the user presses "F6"
+  Then the holiday type should cycle between:
+    | Type      |
+    | None      |
+    | Official  |
+    | Weekend   |
+    | Special   |
+  And the shift should update accordingly
 
 Scenario: Show tooltip for holiday or Ramadan
 Given a day has holiday or Ramadan flag

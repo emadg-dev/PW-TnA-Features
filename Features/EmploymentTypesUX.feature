@@ -17,19 +17,18 @@ Scenario: Create employment type with valid data
   And a success message should be displayed
   And the modal should be closed
 
-Scenario: Create employment type without code
+Scenario Outline: Prevent create employment type when required field is missing
   Given the create employment type modal is open
-  When the user leaves code empty
+  When the user leaves <field> empty
   And clicks on Save
-  Then an error message "کد را وارد کنید" should be shown
+  Then an error message <message> should be shown
   And the employment type should not be saved
 
-Scenario: Create employment type without title
-  Given the create employment type modal is open
-  When the user leaves title empty
-  And clicks on Save
-  Then an error message "عنوان را وارد کنید" should be shown
-  And the employment type should not be saved
+Examples:
+  | field | message            |
+  | code  | کد را وارد کنید     |
+  | title | عنوان را وارد کنید |
+
 
 Scenario: Create employment type with invalid time
   Given the create employment type modal is open
@@ -60,16 +59,15 @@ Scenario: View employment types list
   Then a list of employment types should be displayed
 
 
-Scenario: Filter employment types by code
+Scenario Outline: Filter employment types
   Given employment types exist
-  When the user enters a code in code filter
+  When the user enters <value> in <filter> filter
   Then only matching employment types should be shown
 
-
-Scenario: Filter employment types by title
-  Given employment types exist
-  When the user enters a title in title filter
-  Then only matching employment types should be shown
+Examples:
+  | filter | value |
+  | code   | FT01  |
+  | title  | رسمی  |
 
 
 Scenario: Reset employment type filters
@@ -105,30 +103,15 @@ Scenario: Export employment types to Excel
   When the user clicks on Export to Excel
   Then an Excel file should be downloaded
 
-
-Scenario: Select Daily paid leave accrual type
+Scenario Outline: Paid leave accrual type controls visible fields
   Given the create or edit employment type modal is open
-  When the user selects "Daily" as paid leave accrual type
-  Then leave accrual seconds field should be visible and enabled
-  And leave accrual days field should not be visible
-  And leave accrual hours field should not be visible
-  And leave accrual minutes field should be visible and enabled
+  When the user selects <type> as paid leave accrual type
+  Then <visibleFields> should be visible and enabled
+  And <hiddenFields> should not be visible
 
-
-Scenario: Select Monthly paid leave accrual type
-  Given the create or edit employment type modal is open
-  When the user selects "Monthly" as paid leave accrual type
-  Then leave accrual days field should be visible and enabled
-  And leave accrual hours field should be visible and enabled
-  And leave accrual minutes field should be visible and enabled
-  And leave accrual seconds field should not be visible
-
-
-Scenario: Select Yearly paid leave accrual type
-  Given the create or edit employment type modal is open
-  When the user selects "Yearly" as paid leave accrual type
-  Then leave accrual days field should be visible and enabled
-  And leave accrual hours field should be visible and enabled
-  And leave accrual minutes field should be visible and enabled
-  And leave accrual seconds field should not be visible
+Examples:
+  | type    | visibleFields                    | hiddenFields               |
+  | Daily   | seconds,minutes                  | days,hours                 |
+  | Monthly | days,hours,minutes               | seconds                    |
+  | Yearly  | days,hours,minutes               | seconds                    |
 
