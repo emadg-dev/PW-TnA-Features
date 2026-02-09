@@ -9,10 +9,8 @@ Feature: Monthly timesheet Management (TimeTransactions)
     And wage codes are loaded
     And active years list is loaded
 
-  # -------------------------
   # Load / navigation
-  # -------------------------
-
+  
   Scenario: Load timesheet from localStorage when saved values exist
     Given localStorage contains "jalaliYear", "jalaliMonth", and "employeeId"
     When the page initializes
@@ -64,9 +62,9 @@ Feature: Monthly timesheet Management (TimeTransactions)
     Then the year should not change
     And the timesheet should not reload
 
-  # -------------------------
+
   # Keyboard shortcuts
-  # -------------------------
+
 
   Scenario: Open shift modal with Ctrl+F
     When the user presses "Ctrl+F"
@@ -83,9 +81,9 @@ Feature: Monthly timesheet Management (TimeTransactions)
     Then the system should call batch save for modified rows
 
  
-  # -------------------------
+
   # Editing time transactions within a day
-  # -------------------------
+
 
   Scenario: Mark a transaction as deleted when time is cleared
     Given a day row has an existing time transaction
@@ -115,9 +113,9 @@ Feature: Monthly timesheet Management (TimeTransactions)
     Then the day row should enter "adding time" mode
     And focus should move to the new time input
 
-  # -------------------------
+  
   # Context menu for day row (right click on day)
-  # -------------------------
+  
 
   Scenario: Right click on day opens context menu 
     Given a day row is editable
@@ -144,9 +142,9 @@ Feature: Monthly timesheet Management (TimeTransactions)
     And the day attendance wageCodeId and wageCodeTitle should be updated
     And the day should be added to modified rows list
 
-  # -------------------------
+
   # Context menu for a transaction item (right click on transaction)
-  # -------------------------
+
 
   Scenario: Right click on a transaction opens hourly wage codes list
     Given the selected day has a shift with start and end times
@@ -203,9 +201,9 @@ Feature: Monthly timesheet Management (TimeTransactions)
     And duration should revert to original duration
     And isDurationAuto should revert to original flag
 
-  # -------------------------
+  
   # Overtime editing
-  # -------------------------
+ 
 
   Scenario: Editing overtime stores UI value and DTO minutes
     Given a day row has overtime object
@@ -230,9 +228,9 @@ Feature: Monthly timesheet Management (TimeTransactions)
     And overtimeBetween input should be disabled
     And overtimeAfter input should be disabled
 
-  # -------------------------
+ 
   # Group editing
-  # -------------------------
+  
 
   Scenario: Edit group code for a day and auto-assign shift
     Given the user is editing group code in a day row
@@ -265,9 +263,9 @@ Feature: Monthly timesheet Management (TimeTransactions)
     And each selected day should fetch and update its shift
     And each selected day should be added to modified rows list
 
-  # -------------------------
+ 
   # Report generation
-  # -------------------------
+ 
 
   Scenario: Report is built from summary fields and hides zeros
     Given a timesheet summary exists with presenceSum, overtimeSum, deductionSum and others
@@ -276,9 +274,9 @@ Feature: Monthly timesheet Management (TimeTransactions)
     And rows with value "-" or "00:00" should be hidden
     But "کسر کار ساعتی" and "اضافه کار پرداختنی" should remain even if zero
 
-  # -------------------------
+  
   # Saving changes
-  # -------------------------
+ 
 
   Scenario: Save changes sends only modified rows with mapped DTO fields
     Given the user edited multiple days
@@ -288,3 +286,70 @@ Feature: Monthly timesheet Management (TimeTransactions)
     And timeTransactionItems should exclude deleted items and empty times
     And modified rows list should be cleared after successful save
     And the timesheet should be reloaded for current employee, month and year
+
+
+Scenario Outline: Navigate month without unsaved changes
+  Given there are no unsaved changes
+  And current jalaliMonth is <currentMonth>
+  And current jalaliYear is <currentYear>
+  When the user clicks <direction> month
+  Then jalaliMonth should become <expectedMonth>
+  And jalaliYear should become <expectedYear>
+  And the system should load the timesheet for that month and year
+
+Examples:
+  | direction | currentMonth | currentYear | expectedMonth | expectedYear |
+  | previous  | 5            | 1404        | 4             | 1404         |
+  | previous  | 1            | 1404        | 12            | 1403         |
+  | next      | 12           | 1403        | 1             | 1404         |
+
+
+Scenario Outline: Keyboard shortcuts behavior
+  Given the timesheet page is active
+  And there are <unsavedState> unsaved changes
+  When the user presses "<key>"
+  Then <expectedResult>
+
+Examples:
+  | key     | unsavedState | expectedResult                              |
+  | Ctrl+F | no           | list shift modal should open               |
+  | Ctrl+K | no           | report view should be shown                |
+  | F2     | yes          | system should call batch save for rows     |
+
+
+Scenario Outline: Day row context menu availability
+  Given a day row has daily wage code <hasWageCode>
+  And the day row is <editedState> by user
+  When the user right clicks on the day row
+  Then the context menu should be <menuState>
+
+Examples:
+  | hasWageCode | editedState | menuState |
+  | yes         | not edited  | hidden    |
+  | yes         | edited      | shown     |
+  | no          | edited      | shown     |
+
+
+Scenario Outline: Selecting hourly wage code behavior
+  Given the context menu is open for a transaction
+  And the selected wage code is hourly
+  And wage code type is <type>
+  When the user selects the wage code
+  Then <result>
+
+Examples:
+  | type | result                                                       |
+  | 6    | duration is set to "00:00" and modal is not shown            |
+  | 1    | duration modal should open                                   |
+
+
+Scenario Outline: Overtime field enable and disable rules
+  Given a day row overtime state is <state>
+  When the day row is rendered
+  Then <enabledFields> should be enabled
+  And <disabledFields> should be disabled
+
+Examples:
+  | state             | enabledFields                                       | disabledFields                                 |
+  | totalFilled       | overtimeTotal                                       | overtimeBefore,overtimeBetween,overtimeAfter   |
+  | partsFilled       | overtimeBefore,overtimeBetween,overtimeAfter        | overtimeTotal                                  |
