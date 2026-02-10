@@ -12,7 +12,6 @@ Then employeeId should be loaded from storage
 And employee name should be displayed
 And cardex list should be loaded
 
-
 Scenario: Load cardex records for employee
 Given employeeId exists
 When getDailyLeaveOrMissions is called
