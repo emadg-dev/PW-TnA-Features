@@ -83,7 +83,6 @@ When a new Ramadan range is applied
 Then previous Ramadan flags should be cleared
 And the new range should be applied
 
-And 
 
 Scenario: Display calendar months
 Given the calendar is loaded
