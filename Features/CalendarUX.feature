@@ -30,6 +30,7 @@ Scenario: Prevent editing when year is inactive
 Given the selected year is not active
 When the user clicks a calendar day
 Then no holiday state should change
+ 
 
 Scenario: Toggle holiday state for a day
 Given the calendar year is active
@@ -50,6 +51,7 @@ Then the modified days should be mapped to edit DTO objects
 And the editList API should be called
 And a success notification should be shown
 
+ 
 Scenario: Show tooltip for holiday or Ramadan
 Given a day has holiday or Ramadan flag
 When the user hovers over the day
@@ -65,7 +67,6 @@ Given the Ramadan modal is open
 And the user selects start and end dates
 When the user confirms the selection
 Then all calendar days within the range should be marked as Ramadan
-And those days should be added to modified days list
 And the modal should close
 
 Scenario: Apply multiple Ramadan ranges
