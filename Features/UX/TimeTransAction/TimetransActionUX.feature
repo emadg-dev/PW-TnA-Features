@@ -2,7 +2,7 @@ Feature: Monthly timesheet Management (TimeTransactions)
   The user can view and edit monthly attendance rows (timesheet),
   modify time transactions, wage codes, overtime values, group and shifts,
   and save changes in batch.
-
+  
   Background:
     Given the user is authenticated
     And the timesheet page is opened
@@ -54,15 +54,15 @@ Feature: Monthly timesheet Management (TimeTransactions)
     And the user chooses not to save changes
     Then the system should discard modified rows
     And the system should load the next month timesheet
-
+    
   Scenario: Changing year with unsaved changes and user closes the dialog
     Given there are unsaved changes
     When the user changes the year
     And the user closes the confirmation dialog
     Then the year should not change
     And the timesheet should not reload
-
-
+    
+    
   # Keyboard shortcuts
 
 
@@ -79,12 +79,12 @@ Feature: Monthly timesheet Management (TimeTransactions)
     Given there are unsaved changes
     When the user presses "F2"
     Then the system should call batch save for modified rows
-
+    
  
 
   # Editing time transactions within a day
 
-
+   
   Scenario: Mark a transaction as deleted when time is cleared
     Given a day row has an existing time transaction
     When the user clears the time input for that transaction

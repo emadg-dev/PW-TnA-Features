@@ -18,6 +18,7 @@ Then the selected year should be updated
 And the system should check whether the year is active
 And the calendar should reload for that year
 
+
 Scenario: Activate calendar year
 Given the selected year is not active
 When the user clicks the activate calendar button
