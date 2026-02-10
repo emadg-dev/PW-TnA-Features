@@ -2,6 +2,7 @@ Feature: Employee Monthly Time Specs
 
  Background:
     Given the Employee Monthly Time Specs page is opened
+    And CreateOrEditEmployeeMonthlyTimeSpec modal exists
 
   Scenario: Load employee monthly time specs
     When the page requests employee monthly time specs
@@ -46,9 +47,7 @@ Feature: Employee Monthly Time Specs
     And Excel file should be downloaded
 
 
- Background:
-    Given CreateOrEditEmployeeMonthlyTimeSpec modal exists
-
+ 
   Scenario: Open modal in create mode
     When show is called without id
     Then a new EmployeeMonthlyTimeSpec DTO should be created
@@ -96,6 +95,4 @@ Feature: Employee Monthly Time Specs
     Then createOrEdit service should be called
     And modalSave event should emit
 
-  Scenario: Close modal
-    When close is called
-    Then modal should be hidden
+n

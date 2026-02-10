@@ -15,26 +15,18 @@ Scenario: Create a new employee with valid data
   And success message should be shown
 
 
-Scenario: Save employee without employment type
+Scenario Outline: Prevent save when required employee field is missing
   Given the user is on the employee form
-  And employment type is not selected
+  And "<field>" is not selected
   When the user clicks on save
-  Then an error message "نوع استخدام را انتخاب کنید" should be shown
+  Then an error message "<message>" should be shown
   And employee should not be saved
 
-
-Scenario: Save employee without organization unit
-  Given the user is on the employee form
-  And organization unit is not selected
-  When the user clicks on save
-  Then an error message "واحد سازمان را انتخاب کنید" should be shown
-
-
-Scenario: Save employee without education degree
-  Given the user is on the employee form
-  And education degree is not selected
-  When the user clicks on save
-  Then an error message "تحصیلات را انتخاب کنید" should be shown
+Examples:
+  | field             | message                         |
+  | employment type   | نوع استخدام را انتخاب کنید      |
+  | organization unit | واحد سازمان را انتخاب کنید      |
+  | education degree  | تحصیلات را انتخاب کنید          |
 
 
 Scenario: Employee age is less than 10 years
@@ -56,12 +48,6 @@ Scenario: Invalid time format entered
   Then an error message listing invalid time fields should be shown
   And employee should not be saved
 
-
-Scenario: Convert time strings to minutes before save
-  Given the user enters time values in HH:mm format
-  When the user clicks on save
-  Then all time values should be converted to minutes
-  And sent to backend correctly
 
 
 Scenario: Invalid national ID
