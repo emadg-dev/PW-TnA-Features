@@ -4,7 +4,7 @@ Feature: Employee Dynamic Values
     So that employee attributes can be configured using admin-defined dropdown options
 
     Scenario: Dropdown shows only active options for a field
-        Given a dynamic value field exists with Key "nationality" and DataType "Dropdown"
+        Given a dynamic value field exists with Key "nationality"
         And dynamic value options exist for field "nationality":
             | Code | Title     | IsActive |
             | IR   | Iranian | true     |
@@ -14,7 +14,7 @@ Feature: Employee Dynamic Values
         And the dropdown options should not include "Azerbaijani"
 
     Scenario: Assign a dropdown dynamic value to an employee
-        Given a dynamic value field exists with Key "nationality" and DataType "Dropdown"
+        Given a dynamic value field exists with Key "nationality"
         And a dynamic value option exists for field "nationality" with Code "IR" and Title "Iranian"
         When I set employee "266" dynamic field "nationality" to option "IR"
         Then employee "266" should have dynamic value "nationality" set to "IR"

@@ -4,7 +4,7 @@ Feature: Dynamic Value Options
   So that users can select valid values for employees
 
 Scenario: Add options to a dynamic dropdown field
-  Given a dynamic value field exists with Key "nationality" and DataType "Dropdown"
+  Given a dynamic value field exists with Key "nationality"
   When I add dynamic value options for field "nationality":
     | Code | Title      | IsActive |
     | IR   | Iranian  | true     |

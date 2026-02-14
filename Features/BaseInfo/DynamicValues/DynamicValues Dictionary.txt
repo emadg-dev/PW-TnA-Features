@@ -1,0 +1,41 @@
+========================================
+DYNAMIC VALUE DOMAIN DICTIONARY
+========================================
+
+Dynamic Value Field
+  A configurable metadata field defined by an Admin that can be assigned
+  to employees. It is identified by Name and Key.
+
+Dynamic Field Name
+  The human-readable label of a dynamic value field (e.g., "Nationality").
+
+Dynamic Field Key
+  A unique system identifier for a dynamic value field (e.g., "nationality").
+  Must be unique across the tenant.
+
+IsActive
+  A flag indicating whether the dynamic value field is currently enabled
+  and available for use.
+
+Dynamic Value Option
+  A selectable value belonging to a Dropdown dynamic field,
+  identified by Code and Title.
+
+Option Code
+  A unique identifier within a specific dynamic field for an option
+  (e.g., "IR"). Must be unique per field.
+
+Option Title
+  The display label of a dynamic value option (e.g., "Iranian").
+
+Employee Dynamic Value
+  The assignment of a specific value (e.g., option code) to a
+  dynamic field for a given employee.
+
+Dynamic Value Key Uniqueness
+  A constraint requiring each Dynamic Field Key to be unique
+  within the tenant.
+
+Option Code Uniqueness (Per Field)
+  A constraint requiring Option Codes to be unique within
+  the same Dynamic Value Field.
