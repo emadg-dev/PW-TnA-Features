@@ -1,0 +1,42 @@
+========================================
+BREAK DOMAIN DICTIONARY
+========================================
+
+Break
+  A non-working time interval within a shift defined by
+  StartTime, EndTime, StartDay, and EndDay.
+
+Break Start Time
+  The clock time at which the break begins on the specified StartDay.
+
+Break End Time
+  The clock time at which the break ends on the specified EndDay.
+
+StartDay
+  The relative day index within the shift on which the break begins.
+  Day indexing starts from 0.
+
+EndDay
+  The relative day index within the shift on which the break ends.
+
+Break Interval
+  The continuous time span from:
+    (StartDay + StartTime)
+  to
+    (EndDay + EndTime)
+
+Break Day Range
+  The combination of StartDay and EndDay defining the
+  day span of a break.
+
+Break Duration
+  The defined length of a break.
+  It must correspond exactly to the time difference
+  between its start and end.
+
+Interval Length
+  The calculated time difference between break start
+  and break end, considering day offsets.
+
+Overlapping Break Intervals
+  Two break intervals that share any portion of time in common.

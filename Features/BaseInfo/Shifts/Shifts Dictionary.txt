@@ -1,0 +1,37 @@
+========================================
+SHIFT DOMAIN DICTIONARY
+========================================
+
+Shift
+  A scheduled work period defined by Code, Title,
+  StartTime, EndTime, and optionally DurationDays
+  and AbsenceDayEquivalent.
+
+Shift Code
+  A unique numeric or alphanumeric identifier
+  assigned to a shift.
+
+Shift Title
+  A unique descriptive name assigned to a shift.
+
+Shift Start Time
+  The clock time at which the shift begins.
+
+Shift End Time
+  The clock time at which the shift ends.
+  Its validity may depend on DurationDays.
+
+DurationDays
+  The number of day boundaries between shift
+  start and shift end.
+  0 = shift must end after StartTime on the same day.
+  1+ = shift may end on a later day.
+
+Absence Day Equivalent
+  A time value representing the equivalent
+  duration counted as one absence day for the shift.
+
+Shift Dependency
+  A relationship where a shift is being used
+  by another entity (e.g., Group Cycle),
+  preventing certain operations like deletion.

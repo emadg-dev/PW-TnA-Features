@@ -1,0 +1,43 @@
+========================================
+GROUP DOMAIN DICTIONARY
+========================================
+
+Group
+  A logical collection used to apply holiday, overtime and other rules
+  for employees, defined by Code, Title, and cycle configuration.
+
+Group Code
+  A unique numeric or alphanumeric identifier assigned to a group.
+
+Group Title
+  A unique descriptive name assigned to a group
+  (e.g., Support, HR, Manufacturing).
+
+Cycle Length
+  The number of days in the group’s repeating schedule cycle.
+
+Cycle Start Date
+  The date on which the group’s cycle begins (used as the reference
+  point for repeating the cycle).
+
+Is Holiday Effective
+  A flag indicating whether official calendar holidays are effective
+  for the group schedule.
+
+Overtime On Holiday
+  A defined time window on holidays during which time is treated
+  as overtime for the group.
+
+Start Overtime On Holiday
+  The start time of the overtime window applied on holidays.
+
+End Overtime On Holiday
+  The end time of the overtime window applied on holidays.
+
+Group Cycle
+  The repeating schedule template of a group that maps each
+  DayInCycle to a Shift and a DayOfWeek.
+
+Calendar Per Groups
+  A generated calendar structure for a specific year derived from
+  the group’s cycle configuration.
