@@ -1,0 +1,41 @@
+========================================
+WORK TIME ROW BUILDING DOMAIN DICTIONARY
+========================================
+
+WorkTimeRowDto
+  A per-date attendance/work summary object built for an employee,
+  aggregating calendar, group, shift, wage code, overtime policy, and transaction data.
+
+Attendance Date
+  The Jalali date for which the work time row is built.
+
+Wage Code
+  A classification entity used for payroll/attendance categorization, identified
+  by WageCodeId and described by Title and Type. It is then assigned to 
+  a time transaction or attendance day (DailyLeaveOrMission).
+  (e.g., JustifiedEarlyExit, HourlyOfficialMission, DailyMedicalLeave)
+
+WageCodeId
+  The identifier of a wage code.
+
+WageCodeType
+  The categorical type of a wage code (e.g., Mission, PaidLeave, None).
+
+DailyLeaveOrMission
+  A per-date record indicating that the employee has a leave/mission entry
+  on the date, referencing a WageCodeId.
+
+Overtime Policy
+  A per-date record representing overtime information used in the work time row,
+  about the exact amount of allowed overtime before, after, between shift or total.
+
+ApprovedMinutes
+  The number of minutes of overtime approved for the date.
+
+TimeTransactionItem
+  An item included in WorkTimeRowDto derived from a Time Transaction, optionally
+  enriched with wage code details via lookup.
+
+Wage Codes Lookup
+  A reference dataset used to map WageCodeId on transactions to wage code
+  details (Title, Type).
