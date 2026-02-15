@@ -1,0 +1,59 @@
+========================================
+WORK TIME PAIRING DOMAIN DICTIONARY
+========================================
+
+Work Time Summary
+  A per-employee, per-date dataset used for work time processing.
+  It contains shift context and processing outcomes and is ordered by date.
+
+Work Time Summary Row
+  A single date row in the Work Time Summary containing shift,
+  group, and calendar context fields such as ShiftStart, 
+  ShiftEnd, DurationDays, and processing flags.
+
+Time Transaction
+  A recorded time event for an employee on a specific date, identified by Id
+  and a Time value.
+
+Paired Time Transactions
+  A list of time transactions that have been assigned to a day and may
+  have been moved across dates for pairing completeness.
+
+IsExit
+  A boolean flag on a paired transaction indicating whether it is treated
+  as an exit (OUT) event.
+
+GroupIsMultiDayAttendance
+  A group-level flag controlling whether transactions may be borrowed
+  across adjacent dates to complete pairs.
+
+Multi-Day Attendance
+  The behavior enabled when GroupIsMultiDayAttendance is true, allowing
+  cross-day redistribution of transactions for pairing.
+
+Shift Window
+  The time span defined by ShiftStart, ShiftEnd, and DurationDays, used as the
+  reference for pairing and classification.
+
+CrossDayTolerance
+  A time tolerance value that controls whether a transaction near a day boundary
+  can be considered related to an adjacent day’s shift window.
+  (e.g., exiting 30 minutes after a multi-day shift ends, is included in that shift's
+  pares time transaction list, if CrossDayTolerance >= 00:30:00)
+
+MissingTimeTransaction
+  A day-level status indicating that after processing, the day has an odd
+  number of transactions (incomplete pairing).
+
+CpgHoliday
+  A per-day context value indicating holiday status for the calendar-per-group
+  day (e.g., None when not a holiday).
+
+BeforeShift
+  A classification label for a paired transaction that occurs before the shift window.
+
+InsideShift
+  A classification label for a paired transaction that occurs within the shift window.
+
+AfterShift
+  A classification label for a paired transaction that occurs after the shift window.
