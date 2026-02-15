@@ -52,13 +52,13 @@ Scenario: open edit position modal
 Scenario: save edited position
     Given the edit modal is open
     When the user updates date and clicks save
-    Then the changes should be saved
+    Then the changes should be saved.
     And a success notification should be shown
 
 Scenario: delete position
     Given a position exists
     When the user confirms deletion
-    Then the position should be deleted
+    Then the position should be deleted.
     And a success notification should be shown
     And the list should refresh
 
