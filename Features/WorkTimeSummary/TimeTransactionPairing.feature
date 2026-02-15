@@ -1,4 +1,3 @@
-@workTime @pairing
 Feature: Pair time transactions across days
   As the system
   I want to pair and redistribute time transactions across days based on shift windows

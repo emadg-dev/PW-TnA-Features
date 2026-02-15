@@ -1,4 +1,3 @@
-@workTime @workSummary
 Feature: Work time row building
   As the system
   I want to build a WorkTimeRowDto for a given date
