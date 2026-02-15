@@ -45,7 +45,7 @@ Scenario: validate title length
 
 Scenario: open edit position modal
     Given a position exists
-    When the user clicks edit
+    When the user clicks "edit"
     Then the edit modal should open
     And existing data should be loaded
 
