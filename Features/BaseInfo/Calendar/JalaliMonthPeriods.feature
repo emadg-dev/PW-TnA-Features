@@ -1,4 +1,3 @@
-@jmonth @calendar @settings
 Feature: Custom Jalali month periods
         To compute payroll and attendance consistently
         As a user

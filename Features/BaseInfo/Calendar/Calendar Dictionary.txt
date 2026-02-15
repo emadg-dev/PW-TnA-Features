@@ -1,0 +1,29 @@
+========================================
+CALENDAR MANAGEMENT DOMAIN DICTIONARY
+========================================
+
+Calendar Year
+  A specific year (e.g., "1404") for which holiday calendar
+  data can be generated and activated within the tenant.
+
+Year Activation
+  The process of marking a Calendar Year as active and generating
+  its corresponding holiday calendar entries.
+
+Active Year
+  A Calendar Year that has generated holiday calendar entries.
+
+Inactive Year
+  A Calendar Year that has no generated holiday calendar entries.
+
+Holiday Calendar Entry
+  A daily calendar record for a specific date within a year,
+  containing attributes such as isHoliday and isRamadan.
+
+isHoliday
+  A flag indicating whether a specific calendar date is considered
+  an official, normal or special holiday.
+
+isRamadan
+  A flag indicating whether a specific calendar date falls within
+  the Ramadan period.

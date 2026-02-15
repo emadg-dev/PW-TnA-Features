@@ -1,0 +1,75 @@
+========================================
+GROUP CYCLE DOMAIN DICTIONARY
+========================================
+
+Group Cycle
+  The repeating schedule template of a Group, composed of Cycle Entries.
+  Its total number of entries must match CycleLength.
+
+CycleLength
+  The required number of days (and therefore required cycle entries)
+  in one repeating group cycle.
+
+Cycle Entry
+  A single day definition inside a Group Cycle that maps a DayInCycle
+  to a DayOfWeek and an assigned ShiftId (or null when permitted).
+
+DayInCycle
+  The ordinal day number within the cycle.
+  Valid range: 1..CycleLength.
+  Each value must appear exactly once (no duplicates, no missing days).
+
+DayOfWeek
+  The weekday index associated with a cycle entry (e.g., 1..7).
+  Used to align cycle entries to weekdays.
+
+ShiftId
+  A reference to an existing Shift assigned to a cycle entry.
+
+Null Shift
+  A special “no shift assigned” value (ShiftId = null).
+  It is allowed only when it represents the day immediately after
+  a 2-day shift (DurationDays = 2).
+
+Two-Day Shift
+  A shift with DurationDays = 2 that occupies two consecutive cycle days.
+  This implies the following day is considered already covered by the shift.
+
+HolidayShift
+  A specific shift intended to represent off/holiday days.
+
+Shift Overlap
+  A condition where a shift assignment conflicts with another shift’s
+  covered time/day span within the cycle (e.g., assigning a shift on the
+  second day of a 2-day shift).
+
+Cycle Boundary
+  The transition from the last DayInCycle back to DayInCycle = 1
+  (i.e., the start of the next cycle repetition).
+
+Overlap Across Cycle Boundary
+  A shift overlap that occurs when the last day’s shift coverage extends
+  into DayInCycle = 1 of the next cycle repetition.
+
+DuplicateDayInCycle
+  A business error indicating the same DayInCycle value appears more than once.
+
+MissingDayInCycle
+  A business error indicating DayInCycle values do not cover 1..CycleLength
+  exactly once.
+
+DayInCycleOutOfRange
+  A business error indicating DayInCycle is outside the valid range
+  (less than 1 or greater than CycleLength).
+
+ShiftNotFound
+  A business error indicating a cycle entry references a ShiftId
+  that does not exist.
+
+NullShiftNotAllowed
+  A business error indicating ShiftId = null was used in a position
+  not permitted by the rules.
+
+ShiftOverlapAcrossCycleBoundary
+  A business error indicating the last day shift overlaps Day 1
+  of the next cycle repetition.

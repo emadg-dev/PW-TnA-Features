@@ -1,0 +1,69 @@
+========================================
+EMPLOYEE GROUP ASSIGNMENT HISTORY DICTIONARY
+========================================
+
+Tenant
+  A logical partition of the system’s data and configuration.
+  Employee group history is evaluated within a tenant context.
+
+Employee
+  A person in the system identified by an EmployeeId (e.g., "266")
+  who can belong to different Groups over time.
+
+Group
+  An organizational unit (e.g., RnD, Support, HR) that can be assigned
+  to employees and influences business rules (e.g., holiday/overtime rules).
+
+GroupId
+  The identifier of a Group used in history records.
+
+EmployeeGroups
+  The employee’s group assignment history represented as a set of
+  date intervals (rows), each linking the employee to a GroupId.
+
+EmployeeGroups Row
+  A single history record containing StartDate, EndDate, and GroupId,
+  representing one continuous assignment interval.
+
+StartDate
+  The first date on which an EmployeeGroups row is effective.
+
+EndDate
+  The last date on which an EmployeeGroups row is effective.
+  If EndDate is null, the assignment is open-ended (continues indefinitely).
+
+Open-Ended Interval
+  A history interval whose EndDate is null, meaning it continues until
+  replaced by a later change.
+
+Effective Interval
+  A date range in EmployeeGroups during which a specific GroupId applies
+  (from StartDate to EndDate).
+
+Current Group
+  The group determined by finding the EmployeeGroups interval that contains
+  a specific date.
+
+Indefinite Group Change
+  A group change with no specified end date, producing an open-ended
+  EmployeeGroups interval.
+
+Fixed-Period Group Change
+  A group change with both a start and end date, producing a bounded
+  EmployeeGroups interval.
+
+Reversion
+  The automatic restoration of the previous group assignment after a
+  fixed-period group change ends, starting the next day.
+
+History Rewrite
+  The process of updating EmployeeGroups by splitting and/or replacing
+  existing intervals when a new change overlaps them.
+
+Overlapping Date Ranges
+  A condition where two EmployeeGroups intervals share at least one date.
+  This is not allowed in the final history state.
+
+Latest EmployeeGroups Row
+  The most recent EmployeeGroups interval when ordered by start data.
+

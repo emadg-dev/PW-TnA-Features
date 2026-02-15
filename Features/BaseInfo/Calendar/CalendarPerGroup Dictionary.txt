@@ -1,0 +1,23 @@
+========================================
+GROUP CALENDAR GENERATION DOMAIN DICTIONARY
+========================================
+
+Group Calendar
+  The generated yearly schedule for a specific Group,
+  derived from its Group Cycle configuration.
+
+Calendar Generation
+  The process of creating calendar days for a Group
+  for a specific Calendar Year based on its cycle definition.
+
+Cycle Start Day
+  The reference date from which the Group Cycle begins.
+  Used as the base date for calculating DayInCycle.
+
+Cycle Length
+  The total number of days in one full Group Cycle.
+  The cycle repeats indefinitely after reaching this length.
+
+DayInCycle
+  The computed ordinal position within the cycle
+  for a specific calendar date.

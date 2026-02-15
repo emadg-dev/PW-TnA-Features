@@ -1,0 +1,18 @@
+========================================
+CUSTOM JALALI MONTH PERIODS DOMAIN DICTIONARY
+========================================
+
+Jalali Month
+  A calendar month in the Jalali (Persian) calendar system.
+
+MonthStartDay
+  A tenant-level setting that defines which day-of-month marks the start
+  of each Jalali month period for payroll/attendance calculations.
+
+Jalali Month Period
+  A computed date interval used for payroll/attendance that represents
+  a Jalali month according to MonthStartDay, not necessarily matching
+  the natural month boundaries.
+  
+InvalidMonthStartDay
+  A business error indicating MonthStartDay is outside the allowed range.
