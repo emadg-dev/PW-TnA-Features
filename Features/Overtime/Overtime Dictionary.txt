@@ -1,0 +1,30 @@
+
+اضافه‌کار (Overtime)
+Work performed outside of the mandatory shift hours.
+
+اضافه‌کار با مجوز (OvertimeWithPermit)
+The portion of overtime that has been approved as permissible based on registered permits (either total or specific).
+
+اضافه‌کار بدون مجوز (OvertimeWithoutPermit)
+The portion of overtime that exceeds the allowed limit and requires manager approval.
+
+نوع اضافه‌کار (OvertimeType)
+An Enum specifying the overtime's position: Before (before the shift), Between (between work intervals), and After (after the shift).
+
+مجوز کلی اضافه‌کار (overtimeTotal)
+A general (Total) permit used to convert unauthorized overtime to authorized across all segments (before, between, after).
+
+مجوز موردی اضافه‌کار (overtimeBefore, overtimeAfter)
+Specific permits issued only for a particular part of the overtime (e.g., before the shift).
+
+سقف اضافه‌کار پرسنل (MaxAllowedOvertimePerDay)
+The maximum daily allowed overtime defined in the employee's profile.
+
+سقف اضافه‌کار شیفت (MaxOverTimePerDay)
+The maximum daily allowed overtime specified in the shift definition.
+
+اضافه‌کار در روز تعطیل (MaxOvertimeOnHoliday)
+The overtime limit for holidays.
+
+اضافه‌کار بدون تایید (OvertimeWithoutApproval...)
+The amount of overtime that does not require explicit permission and is automatically approved (for before, after, between, and holidays).
