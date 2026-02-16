@@ -1,0 +1,51 @@
+========================================
+SYSTEM PARAMETERS LOAD & SAVE DOMAIN DICTIONARY
+========================================
+
+System Parameter
+  A stored configuration record scoped by PeriodType and JalaliYear/JalaliMonth (PeriodType dependent),
+  used to provide effective settings for a selected Jalali year/month.
+
+PeriodType
+  The scope category of a System Parameter record: Fixed, Yearly, or Monthly.
+
+Fixed
+  A PeriodType representing tenant-wide settings that are same for all year or month.
+
+Yearly
+  A PeriodType representing settings scoped to a specific JalaliYear.
+
+Monthly
+  A PeriodType representing settings scoped to a specific JalaliYear and JalaliMonth.
+
+ConfigJson
+  The JSON payload stored in a System Parameter record that contains configuration sections.
+
+ConfigJsonStatus
+  A test input label indicating whether a record’s ConfigJson is valid or invalid.
+
+ConfigType
+  The configuration section being updated or referenced: Fixed, Yearly, or Monthly.
+
+Fixed Config
+  The Fixed section of configuration data (as a logical section in ConfigJson).
+
+Yearly Config
+  The Yearly section of configuration data (as a logical section in ConfigJson).
+
+Monthly Config
+  The Monthly section of configuration data (as a logical section in ConfigJson).
+
+Empty Config
+  A result state where a config section is treated as missing (e.g., no applicable record or invalid JSON).
+
+Exact Monthly Record
+  The Monthly System Parameter record for the selected JalaliYear and JalaliMonth (e.g., 1404-09).
+
+Exact Yearly Record
+  The Yearly System Parameter record for the selected JalaliYear (e.g., 1404).
+
+MustHaveNullConfigs
+  A validation expectation indicating which configuration sections
+  must be null or absent in a saved System Parameter record,
+  ensuring that each record contains only its own PeriodType config section.
