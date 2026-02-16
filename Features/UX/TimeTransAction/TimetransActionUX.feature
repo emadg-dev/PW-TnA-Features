@@ -342,7 +342,7 @@ Examples:
   | 6    | duration is set to "00:00" and modal is not shown            |
   | 1    | duration modal should open                                   |
 
-
+  
 Scenario Outline: Overtime field enable and disable rules
   Given a day row overtime state is <state>
   When the day row is rendered
