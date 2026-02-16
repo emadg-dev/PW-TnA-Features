@@ -1,0 +1,36 @@
+OvertimePerDay
+    A standalone overtime record linked to a specific Employee
+    and a specific date, independent from the Monthly Timesheet view.
+
+CreateMode
+    A UI state where a new OvertimePerDay record is being created.
+
+EditMode
+    A UI state where an existing OvertimePerDay record
+    is loaded and modified.
+
+EmployeeId
+    The reference to an existing Employee.
+
+EmployeeLookupModal
+    A selection modal used to search and choose an Employee.
+
+DateShamsi
+    The Persian (Jalali) calendar representation of the selected date.
+
+OvertimeBefore
+    Overtime minutes before main shift.
+
+OvertimeBetween
+    Overtime minutes between shift segments.
+
+OvertimeAfter
+    Overtime minutes after main shift.
+
+OvertimeTotal
+    The aggregated overtime value.
+
+InvalidTimeFields
+    A collection containing field names
+    that currently violate time format rules.
+
