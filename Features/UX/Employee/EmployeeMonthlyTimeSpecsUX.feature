@@ -95,4 +95,3 @@ Feature: Employee Monthly Time Specs
     Then createOrEdit service should be called
     And modalSave event should emit
 
-n

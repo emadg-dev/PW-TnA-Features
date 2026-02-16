@@ -1,0 +1,110 @@
+Timesheet:
+    The monthly attendance view of an Employee,
+
+Attendance  
+    The recorded working presence of an Employee within a specific day,
+    represented by one or more TimeTransactions.
+
+TimeTransaction
+    A single recorded time entry within a day row
+    representing attendance or work activity.
+
+Wage Code
+   A classification entity used for payroll/attendance categorization, identified
+   by WageCodeId and described by Title and Type. It is then assigned to 
+   a time transaction or attendance day (DailyLeaveOrMission).
+   (e.g., JustifiedEarlyExit, HourlyOfficialMission, DailyMedicalLeave)
+
+
+WorkTimeSummaryDto
+    The data transfer object sent to backend containing
+    only modified days and their mapped properties.
+
+JalaliYear
+    The selected Persian calendar year used
+    to load the monthly timesheet.
+
+JalaliMonth
+    The selected Persian calendar month used
+    to load the monthly timesheet.
+
+LocalStorage
+    A persisted browser storage containing:
+    jalaliYear, jalaliMonth, and employeeId.
+
+UnsavedChanges
+    A system state indicating ModifiedRowsList is not empty.
+
+ShiftModal
+    A modal window listing available shifts.
+
+ReportView
+    A generated summary view of timesheet totals and sections.
+
+KeyboardShortcut
+    A predefined key combination triggering system action
+    (e.g., Ctrl+F, Ctrl+K, F2).
+
+
+ResetTransactionTime
+    An action that restores a transaction’s time
+    to its original persisted value.
+
+
+DurationModal
+    A modal used to select duration type and value
+    for hourly wage codes.
+
+DayRow  
+    A single calendar day entry within a Monthly Timesheet,
+    representing all attendance, wage, overtime, group,
+    and shift data for that specific date and Employee.
+
+
+Hourly Wage Code  
+    A Wage Code that must be assigned to a specific TimeTransaction,
+    not to the entire DayRow.
+
+
+DurationType
+    Determines how duration is calculated. Possible values:
+        - attendance (auto-calculated)
+        - hourly (manual input)
+
+OvertimeBefore
+    Overtime minutes before main shift.
+
+OvertimeBetween
+    Overtime minutes between shift segments.
+
+OvertimeAfter
+    Overtime minutes after main shift.
+
+OvertimeTotal
+    The aggregated overtime value.
+
+
+TimesheetSummary
+    A calculated summary containing
+
+ReportBox
+    A visual section inside report view
+    representing one summary category.
+
+PresenceSum
+    The aggregated total of all presence-related fields
+    within a Monthly Timesheet.
+    It represents the employee’s effective working presence
+    calculated from attendance, shift rules, and mission rules.
+
+OvertimeSum
+    The aggregated total of all overtime-related values
+    within a Monthly Timesheet.
+    It includes payable and non-payable overtime durations
+    calculated according to overtime rules.
+
+DeductionSum
+    The aggregated total of all deduction-related values
+    within a Monthly Timesheet.
+    It represents time reductions due to absence,
+    delay, early leave, or other policy violations.
