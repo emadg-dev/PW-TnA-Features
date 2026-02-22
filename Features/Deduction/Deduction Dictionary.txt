@@ -1,0 +1,29 @@
+
+
+تاخیر ورود (LateArrivalTime)
+The final lateness amount for an employee after applying all pardons, hourly leaves, and allowed tolerances.
+
+تاخیر مجاز (AllowedDelay)
+The amount of permissible delay specified in the shift definition (SingleDayShiftDto), applicable to all employees on that shift.
+
+بخشودگی تاخیر (MaxDelayPerDay)
+The personal forgivable lateness amount defined in the employee's profile (EmployeeDto).
+
+**تعجیل (Early Departure)**
+
+تعجیل خروج (EarlyLeaveTime)
+The amount of time an employee leaves early before the end of their shift, after deducting any pardons.
+
+تعجیل مجاز (AllowedEarlyDeparture)
+The amount of permissible early departure specified in the shift definition (SingleDayShiftDto).
+
+بخشودگی تعجیل (MaxHurryPerDay)
+The personal forgivable early departure amount defined in the employee's profile (EmployeeDto).
+
+**غیبت/عدم حضور (Absence)**
+
+عدم حضور بین روز (AbsentSegmentDto)
+Time intervals during work hours (between the first entry and last exit) where the employee was not present without a registered leave or mission.
+
+مجموع غیبت (SumOfAbsentTime)
+The total sum of an employee's absence time in one day.
