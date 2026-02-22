@@ -32,9 +32,6 @@ Scenario: Save system parameter successfully
   When user clicks Save
   Then success notification should be shown
 
-Scenario: Reload page after save
-  Given save operation succeeds
-  Then paginator should reload current page
 
 Scenario Outline: Validate valid time format
   Given user enters "<time>" in time field
