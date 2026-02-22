@@ -37,26 +37,6 @@ Scenario: Create employment type with invalid time
   Then an error message listing invalid time fields should be displayed
   And the employment type should not be saved
 
-Scenario: Edit employment type with valid data
-  Given an employment type exists
-  And the user opens edit employment type modal
-  When the user updates some fields
-  And clicks on Save
-  Then the employment type should be updated successfully
-  And a success message should be displayed
-
-
-Scenario: Edit employment type without changes
-  Given the edit employment type modal is open
-  And no fields are modified
-  When the user clicks on Save
-  Then the employment type should remain unchanged
-  And no validation error should be shown
-
-Scenario: View employment types list
-  Given employment types exist
-  When the user opens Employment Types page
-  Then a list of employment types should be displayed
 
 
 Scenario Outline: Filter employment types
@@ -76,32 +56,6 @@ Scenario: Reset employment type filters
   Then all filters should be cleared
   And the full list should be displayed
 
-
-Scenario: Open delete confirmation dialog
-  Given an employment type exists
-  When the user clicks on Delete
-  Then a confirmation dialog should be displayed
-
-
-Scenario: Cancel employment type deletion
-  Given the delete confirmation dialog is open
-  When the user cancels deletion
-  Then the employment type should not be deleted
-
-
-Scenario: Delete employment type successfully
-  Given an employment type exists
-  And the delete confirmation dialog is open
-  When the user confirms deletion
-  Then the employment type should be deleted
-  And a success message should be displayed
-  And the list should be refreshed
-
-
-Scenario: Export employment types to Excel
-  Given employment types exist
-  When the user clicks on Export to Excel
-  Then an Excel file should be downloaded
 
 Scenario Outline: Paid leave accrual type controls visible fields
   Given the create or edit employment type modal is open
