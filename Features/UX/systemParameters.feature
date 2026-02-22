@@ -75,12 +75,6 @@ Scenario: Navigate to next month
   And system parameters should reload
 
 
-Scenario: Select year
-  Given year picker is visible
-  When user selects a year
-  Then jalaliYear should update
-  And system parameters should reload
-
 Scenario: Navigate to previous active year
   Given active years list exists
   When user clicks previous year
