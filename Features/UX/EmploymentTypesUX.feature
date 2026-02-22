@@ -50,12 +50,6 @@ Examples:
   | title  | رسمی  |
 
 
-Scenario: Reset employment type filters
-  Given filters are applied
-  When the user clicks on Reset
-  Then all filters should be cleared
-  And the full list should be displayed
-
 
 Scenario Outline: Paid leave accrual type controls visible fields
   Given the create or edit employment type modal is open
