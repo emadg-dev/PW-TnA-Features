@@ -57,6 +57,23 @@ Examples:
   | create |
   | edit   |
 
+@EffectiveDuration
+Scenario Outline: Calculate effective shift duration based on start, end and duration days
+  Given a shift start time "<Start>"
+  And a shift end time "<End>"
+  And duration days is "<DurationDays>"
+  When the system calculates the effective duration
+  Then the effective duration should be "<ExpectedEffective>"
+  And the calculation should be "<Validity>"
+
+Examples:
+  | Start  | End    | DurationDays | ExpectedEffective | Validity |
+  | 08:00  | 16:00  | 0            | 08:00             | valid    |
+  | 22:00  | 06:00  | 1            | 08:00             | valid    |
+  | 22:00  | 06:00  | 2            | 32:00             | valid    |
+  | 10:00  | 08:00  | 0            | 00:00             | invalid  |
+  | null   | 08:00  | 0            | 00:00             | invalid  |
+
 
 @BreakIntervals
 Feature: BreakIntervals Management
