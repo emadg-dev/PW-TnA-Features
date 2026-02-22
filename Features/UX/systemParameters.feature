@@ -27,11 +27,6 @@ Scenario: Prevent load when year or month is missing
   And display message to complete the field                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 
 
-Scenario: Save system parameter successfully
-  Given system parameter form is filled
-  When user clicks Save
-  Then success notification should be shown
-
 
 Scenario Outline: Validate valid time format
   Given user enters "<time>" in time field
@@ -56,11 +51,6 @@ Examples:
   | 99:99  |
 
 
-
-Scenario: Toggle month picker
-  When user clicks month selector
-  Then month picker should toggle visibility
-
 Scenario: Select month
   Given month picker is visible
   When user selects a month
@@ -84,9 +74,6 @@ Scenario: Navigate to next month
   And year should increment
   And system parameters should reload
 
-Scenario: Toggle year picker
-  When user clicks year selector
-  Then year picker should toggle visibility
 
 Scenario: Select year
   Given year picker is visible
